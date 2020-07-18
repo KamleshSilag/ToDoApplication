@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Todo Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<div class="jumbotron">
+    <h1 class="display-4">ToDo Application !</h1>
+    <p class="lead">This is a simple application for maintaining your tasks.</p>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr >
+            <th>TASK NAME</th>
+            <th>STATUS<th>
+        </tr>
+    </thead>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.value.content}"></td>
+        <td><input type="checkbox" name="status" th:checked="${task.value.done}"/></td>
+    </tr>
+</table>
+
+<div style="text-align: center">
+<form style="display: inline-block" action="#" th:action="@{/dashboard}" th:object="${todo}" method="post">
+    <p>Task : <input type="text" th:field="*{content}" style="align-content: center"/></p>
+    <p>
+        <input class="btn btn-primary" type="submit" value="Submit" />
+        <input class="btn btn-primary" type="reset" value="Reset" />
+    </p>
+</form>
+</div>
+</body>
+</html>
